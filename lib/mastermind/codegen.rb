@@ -32,18 +32,10 @@ module Mastermind
       start_time = Time.now
       puts computercode
       guess_count = 0
-      while guess_count < 12
+      user_entry = 0
+      while guess_count < 12 && user_entry != computercode
         user_entry = gets.chomp.downcase
-        if user_entry.length == computercode.length
-          puts " You have taken #{guess_count + 1} guess(es) out of 12 guesses."
-          comparison(computercode, user_entry, start_time)
-        elsif user_entry.length > computercode.length
-          puts "Invalid Entry, guess is too long"
-          puts " You have taken #{guess_count + 1} guess(es) out of 12 guesses."
-        else
-          puts "Invalid Entry, guess is too short"
-          puts " You have taken #{guess_count + 1} guess(es) out of 12 guesses."
-        end
+        comp_comparison(user_entry, computercode, start_time, guess_count)
         guess_count += 1
         if guess_count >= 12
           puts "You have exceeded your number of entries"
@@ -80,6 +72,7 @@ module Mastermind
     def comparison(computercode, user_entry, start_time)
       if computercode == user_entry
         puts "Congratulations! It took you #{(Time.now - start_time).to_i} seconds to complete this game "
+        game_data(start_time)
       else
         exact_status = exact_match(computercode, user_entry)
         cc = exact_status[1]
@@ -90,7 +83,42 @@ module Mastermind
       end
     end
 
-
+    def comp_comparison(user_entry, computercode, start_time, guess_count)
+      if user_entry.length == computercode.length
+          puts " You have taken #{guess_count + 1} guess(es) out of 12 guesses."
+          comparison(computercode, user_entry, start_time)
+        elsif user_entry.length > computercode.length
+          puts "Invalid Entry, guess is too long"
+          puts " You have taken #{guess_count + 1} guess(es) out of 12 guesses."
+        else
+          puts "Invalid Entry, guess is too short"
+          puts " You have taken #{guess_count + 1} guess(es) out of 12 guesses."
+      end
+    end
+    def game_data(start_time)
+      # saves the game info to a file
+      #all the method does is to pick the game data and store it in a file
+      puts "Do you want to save to file? Y/N"
+      input = gets.chomp
+      if input[0].downcase == "y"
+        puts "What is your name?"
+        name_input = gets.chomp
+        File.open("users.txt", "a+") do |file|
+          puts "#{name_input} completed the game in #{(Time.now - start_time).to_i} seconds"
+          file.puts "#{name_input} completed the game in #{(Time.now - start_time).to_i} seconds"
+        end
+        record
+      end  
+    end
+    def record
+      puts "Do you want to see your rank? Y/N"
+        rank_input = gets.chomp
+        if rank_input[0].downcase == "y"
+          File.open("users.txt", "r+") do |file|
+            file.each_line {|line|  puts line}
+          end
+        end
+    end
     def level_specs(level)
       levels = Hash.new ()
       levels[:advanced] = [8,6]
