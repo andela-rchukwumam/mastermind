@@ -67,6 +67,5 @@ describe Mastermind::Message do
     end
   end
 
-
 end
 ########################################################
