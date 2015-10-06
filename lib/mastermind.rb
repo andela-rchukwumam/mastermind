@@ -75,4 +75,4 @@ module Mastermind
     end
   end
 end
- # Mastermind::GameEngine.start
+  # Mastermind::GameEngine.start

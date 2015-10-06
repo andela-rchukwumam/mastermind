@@ -45,15 +45,6 @@ module Mastermind
       EOS
     end
 
-    def cheat_msg
-      <<-EOS
-              *************************************
-              *      Press (c)heat to display     *
-              *             game cheat            *
-              ************************************* 
-      EOS
-    end
-
     def beginner_msg
             <<-EOS
               *****************************************
@@ -87,8 +78,7 @@ module Mastermind
               * with eight elements made up of: (r)ed,*
               *  (g)reen, (b)lue, (y)ellow (c)yan,    *
               * (m)agneta. Use (q)uit at any time to  *
-              * end the game or (c)heat to print out  *
-              * the secret code. What is  your guess? *
+              *   end the game. What is  your guess?  *
               ***************************************** 
       EOS
     end

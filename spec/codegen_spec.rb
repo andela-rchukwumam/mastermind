@@ -10,5 +10,11 @@ describe Mastermind::CodeGenerator do
       expect(@code_generator).to be_a Mastermind::CodeGenerator
     end
   end
+
+  describe "#code_generator" do
+    it "returns a new CodeGenerator object" do
+      expect{@code_generator.code_generator}.to raise_error(ArgumentError)
+    end
+  end
 end
 ########################################################

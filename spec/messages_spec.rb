@@ -46,13 +46,6 @@ describe Mastermind::Message do
     end
   end
 
-  describe "#cheat_msg" do
-    it "should be a string and contain the words game cheat" do
-      expect(@message.cheat_msg).to include("game cheat")
-      expect(@message.cheat_msg).to be_a String
-    end
-  end
-
   describe "#beginner_msg" do
     it "should be a string and contain the word beginner" do
       expect(@message.beginner_msg).to include("beginner")
