@@ -1,48 +1,191 @@
 module Mastermind
   class Message
     def welcome_msg
-      puts "Welcome to Master Mind!"
+      <<-EOS 
+              *************************************
+              *       WELCOME TO MASTERMIND!      *
+              *                                   *
+              ************************************* 
+      EOS
     end
+
     def request_msg
-      puts "Would you like to (p)lay, read the (i)nstructions, or (q)uit?"
+      <<-EOS 
+              *************************************
+              * Would you like to (p)lay, read the*
+              * (i)nstructions, or (q)uit?        *
+              ************************************* 
+      EOS
     end
+
     def error_msg
-      puts "Invalid input, please try again"
+      <<-EOS 
+              *************************************
+              *"You have exceeded your number of  *
+              *            entries"               *
+              ************************************* 
+      EOS
     end
+
     def quit_msg
-      puts "You have quit the game"
+      <<-EOS
+              *************************************
+              *      You have quit the game!      *
+              *                                   *
+              ************************************* 
+      EOS
     end
+
     def level_msg
-      puts "Do you want the (b)eginner level, (m)edium level or (a)dvanced level?" 
+      <<-EOS
+              *************************************
+              * Do you want the (b)eginner level, *
+              *(m)edium level or (a)dvanced level?*
+              ************************************* 
+      EOS
     end
+
     def cheat_msg
-      puts "Press (c)heat to display game cheat"
+      <<-EOS
+              *************************************
+              *      Press (c)heat to display     *
+              *             game cheat            *
+              ************************************* 
+      EOS
     end
+
     def beginner_msg
-      puts "I have generated a beginner sequence with four elements made up of: (r)ed, (g)reen, (b)lue, (y)ellow. Use (q)uit any time to end the game or (c)heat to print out the secret code. What is your guess?"
+            <<-EOS
+              *****************************************
+              * I have generated a beginner sequence  *
+              * with four elements made up of: (r)ed, *
+              * (g)reen,(b)lue, (y)ellow.Use (q)uit at*
+              * any time to end the game or (c)heat   *
+              * to print out the secret code. What is *
+              *            your guess?                *
+              ***************************************** 
+      EOS
     end
+
     def medium_msg
-      puts "I have generated a medium sequence with six elements made up of: (r)ed, (g)reen, (b)lue, (y)ellow, (c)yan. Use (q)uit any time to end the game or (c)heat to print out the secret code. What is your guess?"
+            <<-EOS
+              *****************************************
+              *   I have generated a medium sequence  *
+              *  with six elements made up of: (r)ed, *
+              * (g)reen, (b)lue, (y)ellow, (c)yan. Use*
+              * (q)uit at any time to end the game or *
+              * (c)heat to print out the secret code. *
+              *        What is your guess?            *
+              ***************************************** 
+      EOS
     end
+
     def advanced_msg
-      puts "I have generated a advanced sequence with eight elements made up of: (r)ed, (g)reen, (b)lue, (y)ellow, (c)yan, (m)agneta. Use (q)uit any time to end the game or (c)heat to print out the secret code. What is your guess?"
+            <<-EOS
+              *****************************************
+              * I have generated an advanced sequence *
+              * with eight elements made up of: (r)ed,*
+              *  (g)reen, (b)lue, (y)ellow (c)yan,    *
+              * (m)agneta. Use (q)uit at any time to  *
+              * end the game or (c)heat to print out  *
+              * the secret code. What is  your guess? *
+              ***************************************** 
+      EOS
     end
+
     def instruction_msg
-      puts <<-EOS 
-      MasterMind game Instuction 
-      When you click play, you are asked to choose a level to play.
-      Depending on the your choice, I have selected a secret combination of colored pegs:
-      Guess that combination in 12 or fewer tries to win.
-      How to Play
-      In the Beginner Level, for each of my four positions I have chosen from four possible colors:
-      In the Medium Level, for each of my six positions I have chosen from five possible colors:
-      In the Beginner Level, for each of my eight positions I have chosen from six possible colors:
-      I can use a color more than once, so the combination could contain anything from different colors to the same color: 
-      example 1: rrgb
-      example 2: rcgby
-      example 3: mcrrybgg 
-      Each time you submit a guess I will let you know how close that guess is: 
-      Press (q) to quit or (p) to play 
+              <<-EOS 
+              MasterMind game Instruction 
+              When you click play, you are asked to choose a level to play.
+              Depending on the your choice, I have selected a secret combination of colored pegs:
+              Guess that combination in 12 or fewer tries to win.
+              How to Play
+              In the Beginner Level, for each of my four positions I have chosen from four possible colors:
+              In the Medium Level, for each of my six positions I have chosen from five possible colors:
+              In the Beginner Level, for each of my eight positions I have chosen from six possible colors:
+              I can use a color more than once, so the combination could contain anything from different colors to the same color: 
+              example 1: rrgb
+              example 2: rcgby
+              example 3: mcrrybgg 
+              Each time you submit a guess I will let you know how close that guess is: 
+              Press (q) to quit or (p) to play 
+              EOS
+    end
+
+    def long_entry
+      <<-EOS
+              *************************************
+              *  Invalid Entry, guess is too long *
+              ************************************* 
+
+      EOS
+    end
+
+    def short_entry
+      <<-EOS
+              *************************************
+              *  Invalid Entry, guess is too short*
+              ************************************* 
+      EOS
+    end
+
+    def guess_msg(guess_count)
+      <<-EOS
+              *************************************
+              *    You have taken #{guess_count + 1} guess(es)       *
+              *    out of 12 guesses.             *
+              ************************************* 
+
+      EOS
+    end
+
+    def name_msg
+      <<-EOS
+              *************************************
+              *         What is your name?        *
+              ************************************* 
+      EOS
+    end
+
+    def data_msg(name_input, start_time)
+      <<-EOS
+              *************************************
+              *#{name_input} completed the game in #{(Time.now - start_time).to_i} seconds*
+              ************************************* 
+      EOS
+    end
+
+    def rank_msg
+      <<-EOS
+              *************************************
+              * Do you want to see your rank? Y/N?*
+              ************************************* 
+      EOS
+    end
+
+    def save_msg
+      <<-EOS
+              *************************************
+              * Do you want to save to file? Y/N? *
+              ************************************* 
+      EOS
+    end
+    def won_msg(start_time)
+      <<-EOS
+              *************************************
+              *Congratulations! It took you #{(Time.now - start_time).to_i} *
+              *seconds to complete this game      *
+              ************************************* 
+      EOS
+    end
+
+    def match_msg(exact_status, partial_status)
+      <<-EOS
+              *************************************
+              *You have #{exact_status} exact matches     *
+              *and #{partial_status} partial matches        *
+              *             Try Again!            *
+              ************************************* 
       EOS
     end
   end

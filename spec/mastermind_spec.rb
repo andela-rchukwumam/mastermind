@@ -7,7 +7,7 @@ describe Mastermind::GameEngine do
   end
   describe "#new" do
     it "returns a new GameEngine object" do
-      expect(@game_engine.class).to eql(Mastermind::GameEngine)
+      expect(@game_engine).to be_a Mastermind::GameEngine
     end
   end
 
@@ -24,15 +24,3 @@ end
 
 
 
-#######################################################
-describe Mastermind::CodeGenerator do
-  before :each do
-    @code_generator = Mastermind::CodeGenerator.new
-  end
-  describe "#new" do
-    it "returns a new CodeGenerator object" do
-      expect(@code_generator.class).to eql(Mastermind::CodeGenerator)
-    end
-  end
-end
-########################################################

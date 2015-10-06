@@ -20,11 +20,11 @@ module Mastermind
 
      def user_status(user_choice)
       if user_choice == :advanced
-        Message.new.advanced_msg
+        puts Message.new.advanced_msg
       elsif user_choice == :medium
-        Message.new.medium_msg
+        puts Message.new.medium_msg
       else
-        Message.new.beginner_msg
+        puts Message.new.beginner_msg
       end
     end
 
@@ -38,7 +38,7 @@ module Mastermind
         comp_comparison(user_entry, computercode, start_time, guess_count)
         guess_count += 1
         if guess_count >= 12
-          puts "You have exceeded your number of entries"
+          puts Message.new.error_msg
         end
       end 
     end
@@ -71,53 +71,28 @@ module Mastermind
 
     def comparison(computercode, user_entry, start_time)
       if computercode == user_entry
-        puts "Congratulations! It took you #{(Time.now - start_time).to_i} seconds to complete this game "
-        game_data(start_time)
+        puts Message.new.won_msg(start_time)
+        GameEngine.new.game_data(start_time)
       else
         exact_status = exact_match(computercode, user_entry)
         cc = exact_status[1]
         exact_status = exact_status[0]
         partial_status = partial_match(cc, user_entry)
-        puts "You have #{exact_status} exact matches and #{partial_status} partial matches"
-        puts "Try again!"
+        puts Message.new.match_msg(exact_status, partial_status)
       end
     end
 
     def comp_comparison(user_entry, computercode, start_time, guess_count)
       if user_entry.length == computercode.length
-          puts " You have taken #{guess_count + 1} guess(es) out of 12 guesses."
+          puts Message.new.guess_msg(guess_count)
           comparison(computercode, user_entry, start_time)
         elsif user_entry.length > computercode.length
-          puts "Invalid Entry, guess is too long"
-          puts " You have taken #{guess_count + 1} guess(es) out of 12 guesses."
+          puts Message.new.long_entry
+          puts Message.new.guess_msg(guess_count)
         else
-          puts "Invalid Entry, guess is too short"
-          puts " You have taken #{guess_count + 1} guess(es) out of 12 guesses."
+          puts Message.new.short_entry
+          puts Message.new.guess_msg(guess_count)
       end
-    end
-    def game_data(start_time)
-      # saves the game info to a file
-      #all the method does is to pick the game data and store it in a file
-      puts "Do you want to save to file? Y/N"
-      input = gets.chomp
-      if input[0].downcase == "y"
-        puts "What is your name?"
-        name_input = gets.chomp
-        File.open("users.txt", "a+") do |file|
-          puts "#{name_input} completed the game in #{(Time.now - start_time).to_i} seconds"
-          file.puts "#{name_input} completed the game in #{(Time.now - start_time).to_i} seconds"
-        end
-        record
-      end  
-    end
-    def record
-      puts "Do you want to see your rank? Y/N"
-        rank_input = gets.chomp
-        if rank_input[0].downcase == "y"
-          File.open("users.txt", "r+") do |file|
-            file.each_line {|line|  puts line}
-          end
-        end
     end
     def level_specs(level)
       levels = Hash.new ()
