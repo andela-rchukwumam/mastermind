@@ -25,10 +25,6 @@ describe Mastermind::GameEngine do
   end
 
   describe"user_input" do
-    before do
-       
-    end
-
     it "should check for user choice and show quit message " do
       allow(Mastermind::GameEngine).to receive(:gets).and_return("q")
       allow(Mastermind::GameEngine).to receive(:puts).and_return(nil)
@@ -70,11 +66,13 @@ describe Mastermind::GameEngine do
   end
 
   describe"self.play" do
-    it "should print the two messages welcome and request" do
-      allow(Mastermind::GameEngine).to receive(:user_input).and_return(nil)
-      allow(Mastermind::Message.new).to receive(:welcome_msg).and_return(nil)
-      allow(Mastermind::Message.new).to receive(:request_msg).and_return(nil)
-      expect(Mastermind::GameEngine.start).to be nil
+    it "should print the level message and call code generator" do
+      # allow(Mastermind::GameEngine).to receive(:user_input).and_return(nil)
+      allow(Mastermind::GameEngine).to receive(:puts).and_return(nil)
+      allow(Mastermind::Message.new).to receive(:level_msg).and_return(nil)
+      allow(Mastermind::GameEngine).to receive(:gets).and_return("b")
+      # allow(Mastermind::CodeGenerator.new).to receive(:code_generator()).and_return(nil)
+      expect(Mastermind::GameEngine.play).to be String
     end
   end
 
