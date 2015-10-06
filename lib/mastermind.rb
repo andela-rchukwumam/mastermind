@@ -12,23 +12,24 @@ require_relative 'mastermind/codegen'
 module Mastermind
    class GameEngine 
     #this class handles all the main work in the game.
-    def self.start 
-      puts Message.new.welcome_msg
-      puts Message.new.request_msg
+    def self.start
+      @message= Message.new
+      puts @message.welcome_msg
+      puts @message.request_msg
       self.user_input
     end
 
     def self.user_input
       loop do
-        input = gets.chomp
-        if input[0].downcase == "q"
+        @input = gets.chomp
+        if @input[0].downcase == "q"
           puts Message.new.quit_msg
           break
         end
-        if input[0].downcase == "p"
+        if @input[0].downcase == "p"
           self.play
           break
-        elsif input[0].downcase == "i"
+        elsif @input[0].downcase == "i"
           puts Message.new.instruction_msg
         end
       end
@@ -75,4 +76,3 @@ module Mastermind
     end
   end
 end
-  # Mastermind::GameEngine.start

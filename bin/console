@@ -10,5 +10,6 @@ require "mastermind"
 # require "pry"
 # Pry.start
 
-require "irb"
-IRB.start
+Mastermind::GameEngine.start 
+# require "irb"
+# IRB.start
