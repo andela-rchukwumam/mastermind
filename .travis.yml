@@ -2,6 +2,9 @@ language: ruby
 rvm:
   - 2.1.6
 before_install: gem install bundler -v 1.10.6
+cache: bundler
+
+script: "bundle exec rspec spec"
 
 after_success:
     - coveralls
