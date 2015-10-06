@@ -12,14 +12,14 @@ describe Mastermind::Message do
   end
 
   describe "#welcome_msg" do
-    it "should be a string and contain welcome" do
+    it "should be a string and contain the word welcome" do
       expect(@message.welcome_msg).to include("WELCOME")
       expect(@message.welcome_msg).to be_a String
     end
   end
 
   describe "#request_msg" do
-    it "should be a string and contain would" do
+    it "should be a string and contain the word would" do
       expect(@message.request_msg).to include("Would")
       expect(@message.request_msg).to be_a String
     end
@@ -33,14 +33,35 @@ describe Mastermind::Message do
   end
 
   describe "#quit_msg" do
-    it "should be a string and contain quit" do
+    it "should be a string and contain the word quit" do
       expect(@message.quit_msg).to include("quit")
       expect(@message.quit_msg).to be_a String
     end
   end
 
+  describe "#level_msg" do
+    it "should be a string and contain the word level" do
+      expect(@message.level_msg).to include("level")
+      expect(@message.level_msg).to be_a String
+    end
+  end
+
+  describe "#cheat_msg" do
+    it "should be a string and contain the words game cheat" do
+      expect(@message.cheat_msg).to include("game cheat")
+      expect(@message.cheat_msg).to be_a String
+    end
+  end
+
+  describe "#beginner_msg" do
+    it "should be a string and contain the word beginner" do
+      expect(@message.beginner_msg).to include("beginner")
+      expect(@message.beginner_msg).to be_a String
+    end
+  end
+
   describe "#instruction_msg" do
-    it "should be a string and contain instructions" do
+    it "should be a string and contain the word instructions" do
       expect(@message.instruction_msg).to include("When you click play")
       expect(@message.instruction_msg).to be_a String
     end
