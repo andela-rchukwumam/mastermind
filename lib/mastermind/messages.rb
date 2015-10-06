@@ -45,15 +45,6 @@ module Mastermind
       EOS
     end
 
-    def cheat_msg
-      <<-EOS
-              *************************************
-              *      Press (c)heat to display     *
-              *             game cheat            *
-              ************************************* 
-      EOS
-    end
-
     def beginner_msg
             <<-EOS
               *****************************************
