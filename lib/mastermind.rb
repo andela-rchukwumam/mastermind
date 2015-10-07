@@ -29,7 +29,7 @@ module Mastermind
         if @input[0].downcase == "p"
           self.play
           break
-        elsif @input[0].downcase == "i"
+        else @input[0].downcase == "i"
           puts Message.new.instruction_msg
         end
       end
@@ -54,8 +54,8 @@ module Mastermind
       # saves the game info to a file
       #all the method does is to pick the game data and store it in a file
       puts Message.new.save_msg
-      input = gets.chomp
-      if input[0].downcase == "y"
+      @input = gets.chomp
+      if @input[0].downcase == "y"
         puts Message.new.name_msg
         name_input = gets.chomp
         File.open("users.txt", "a+") do |file|
@@ -67,8 +67,8 @@ module Mastermind
     end
     def record
       puts Message.new.rank_msg
-        rank_input = gets.chomp
-        if rank_input[0].downcase == "y"
+        @rank_input = gets.chomp
+        if @rank_input[0].downcase == "y"
           File.open("users.txt", "r+") do |file|
             file.each_line {|line|  puts line}
           end

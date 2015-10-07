@@ -4,7 +4,6 @@ require_relative 'spec_helper'
 describe Mastermind::GameEngine do
 
   before :each do
-
     @game_engine = Mastermind::GameEngine.new
   end
   describe "#new" do
@@ -30,7 +29,6 @@ describe Mastermind::GameEngine do
       allow(Mastermind::GameEngine).to receive(:puts).and_return(nil)
       allow(Mastermind::Message.new).to receive(:quit_msg).and_return(nil)
       expect(Mastermind::GameEngine.user_input).to be nil
-      # puts "finished user_input"
     end
 
     it "should check for user input and play game " do
@@ -38,17 +36,16 @@ describe Mastermind::GameEngine do
       allow(Mastermind::GameEngine).to receive(:gets).and_return("p")
       allow(Mastermind::GameEngine).to receive(:puts).and_return(nil)
       expect(Mastermind::GameEngine.user_input).to be nil
-      # puts "finished user_input"
     end
-  end
 
     it "should check for user choice and show instruction message " do
+      allow(Mastermind::GameEngine).to receive(:user_input).and_return(nil)
       allow(Mastermind::GameEngine).to receive(:gets).and_return("i")
       allow(Mastermind::GameEngine).to receive(:puts).and_return(nil)
       allow(Mastermind::Message.new).to receive(:instruction_msg).and_return(nil)
-      # expect(Mastermind::GameEngine.user_input).to be nil
-      # puts "finished user_input"
+      expect(Mastermind::GameEngine.user_input).to be nil
     end
+  end
 
   describe"game_level" do
     it "should throw error if called without an argument" do
@@ -65,19 +62,25 @@ describe Mastermind::GameEngine do
     end
   end
 
-  describe"self.play" do
+  describe"play" do
     it "should print the level message and call code generator" do
-      # allow(Mastermind::GameEngine).to receive(:user_input).and_return(nil)
       allow(Mastermind::GameEngine).to receive(:puts).and_return(nil)
       allow(Mastermind::Message.new).to receive(:level_msg).and_return(nil)
       allow(Mastermind::GameEngine).to receive(:gets).and_return("b")
-      # allow(Mastermind::CodeGenerator.new).to receive(:code_generator()).and_return(nil)
-      # expect(Mastermind::GameEngine.play).to be String
+      expect{Mastermind::CodeGenerator.new.code_generator}.to raise_error(ArgumentError)
     end
   end
 
+  describe"game_data" do
+    it "should save the game data to a file" do
+      allow(Mastermind::GameEngine).to receive(:puts).and_return(nil)
+      allow(Mastermind::Message.new).to receive(:level_msg).and_return(nil)
+      allow(Mastermind::GameEngine).to receive(:gets).and_return("y")
+      allow(Mastermind::Message.new).to receive(:name_msg).and_return(nil)
+      expect{Mastermind::GameEngine.new.game_data}.to raise_error(ArgumentError)
+    end
+  end
+
+
 end
 ########################################################
-
-
-
