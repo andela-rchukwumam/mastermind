@@ -1,5 +1,15 @@
+require "colorize"
 module Mastermind
   class Message
+
+    def initialize
+      @red = "(r)ed".colorize(:color =>:red)
+      @green = "(g)reen".colorize(:color =>:green)
+      @blue = "(b)lue".colorize(:color =>:blue)
+      @yellow = "(y)ellow".colorize(:color =>:yellow)
+      @cyan = "(c)yan".colorize(:color =>:cyan)
+      @magenta ="(m)agenta".colorize(:color => :magenta)
+    end
     def welcome_msg
       <<-EOS 
               *************************************
@@ -49,11 +59,10 @@ module Mastermind
             <<-EOS
               *****************************************
               * I have generated a beginner sequence  *
-              * with four elements made up of: (r)ed, *
-              * (g)reen,(b)lue, (y)ellow.Use (q)uit at*
-              * any time to end the game or (c)heat   *
-              * to print out the secret code. What is *
-              *            your guess?                *
+              * with four elements made up of: #{@red}* 
+              * #{@yellow}, #{@green} and #{@blue}.Use *
+              * (q)uit at any time to end the game    *
+              *          What is your guess?          *
               ***************************************** 
       EOS
     end
@@ -62,11 +71,10 @@ module Mastermind
             <<-EOS
               *****************************************
               *   I have generated a medium sequence  *
-              *  with six elements made up of: (r)ed, *
-              * (g)reen, (b)lue, (y)ellow, (c)yan. Use*
-              * (q)uit at any time to end the game or *
-              * (c)heat to print out the secret code. *
-              *        What is your guess?            *
+              *  with six elements made up of: #{@red}, * 
+              * #{@yellow}, #{@green}, #{@blue} #{@yellow},*
+              * #{@cyan}. Use (q)uit at any time   *
+              * to end the game.  What is your guess? *
               ***************************************** 
       EOS
     end
@@ -75,9 +83,9 @@ module Mastermind
             <<-EOS
               *****************************************
               * I have generated an advanced sequence *
-              * with eight elements made up of: (r)ed,*
-              *  (g)reen, (b)lue, (y)ellow (c)yan,    *
-              * (m)agneta. Use (q)uit at any time to  *
+              * with eight elements made up of: #{@red}, * 
+              * #{@yellow}, #{@green}, #{@blue} #{@yellow},*
+              * #{@cyan}, #{@magenta}.Use (q)uit at any time to  *
               *   end the game. What is  your guess?  *
               ***************************************** 
       EOS

@@ -4,14 +4,17 @@ module Mastermind
       @message = Message.new
       @gamedata = GameData.new
     end
-    
+
     def guess_status(computercode)
       start_time = Time.now
       puts computercode
-      guess_count = 0
-      user_entry = 0
+      guess_count = user_entry = 0
       while guess_count < 12 && user_entry != computercode
         user_entry = gets.chomp.downcase
+      if user_entry == "q"
+        puts @message.quit_msg
+        break
+      end
         comp_comparison(user_entry, computercode, start_time, guess_count)
         guess_count += 1
         if guess_count >= 12
