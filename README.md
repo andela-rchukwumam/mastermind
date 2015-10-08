@@ -1,4 +1,5 @@
 # Mastermind
+[![Coverage Status](https://coveralls.io/repos/andela-rchukwumam/mastermind/badge.svg?branch=master&service=github)](https://coveralls.io/github/andela-rchukwumam/mastermind?branch=master)
 
 Welcome to the Mastermind Game!
 Read the usage below for more instructions.
