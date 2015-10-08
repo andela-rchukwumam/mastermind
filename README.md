@@ -1,8 +1,7 @@
 # Mastermind
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/mastermind`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Welcome to the Mastermind Game!
+Read the usage below for more instructions.
 
 ## Installation
 
@@ -22,7 +21,18 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+MasterMind game Usage
+    When you click play, you are asked to choose a level to play.
+    Depending on the your choice, I have selected a secret combination of colored pegs:
+    Guess that combination in 12 or fewer tries to win.
+How to Play
+    In the Beginner Level, for each of my four positions I have chosen from four possible colors:
+    In the Medium Level, for each of my six positions I have chosen from five possible colors:
+    In the Beginner Level, for each of my eight positions I have chosen from six possible colors:
+    I can use a color more than once, so the combination could contain anything from different colors to the same color: 
+    example 1: rrgb
+    example 2: rcgby
+    example 3: mcrrybgg 
 
 ## Development
 
@@ -32,7 +42,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/mastermind. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/andela-rchukwumam/mastermind. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](contributor-covenant.org) code of conduct.
 
 
 ## License
