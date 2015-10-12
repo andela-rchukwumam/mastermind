@@ -16,9 +16,8 @@ describe Mastermind::GameEngine do
   describe"#start" do
     it "should print the two messages welcome and request" do
       allow(@game_engine).to receive(:user_input).and_return(nil)
-      allow(@message).to receive(:welcome_msg).and_return(nil)
-      allow(@message).to receive(:request_msg).and_return(nil)
-      expect(@game_engine.start).to be nil
+      expect{@game_engine.start}.to output(/WELCOME/).to_stdout
+      expect{@game_engine.start}.to output(/\(p\)lay/).to_stdout
       # puts "finished start"
     end
   end
@@ -40,11 +39,11 @@ describe Mastermind::GameEngine do
     end
 
     it "should check for user choice and show instruction message " do
-      allow(@game_engine).to receive(:user_input).and_return(nil)
+      # allow(@game_engine).to receive(:user_input).and_return(nil)
       allow(@game_engine).to receive(:gets).and_return("i")
       allow(@game_engine).to receive(:puts).and_return(nil)
       allow(@message).to receive(:instruction_msg).and_return(nil)
-      expect(@game_engine.user_input).to be nil
+      expect(@game_engine.user_input(true)).to be nil
     end
   end
 
@@ -66,9 +65,9 @@ describe Mastermind::GameEngine do
   describe"#play" do
     it "should print the level message and call code generator" do
       allow(@game_engine).to receive(:puts).and_return(nil)
-      allow(@message).to receive(:level_msg).and_return(nil)
+      allow(@game_engine.codegen).to receive(:code_generator).and_return(nil)
       allow(@game_engine).to receive(:gets).and_return("b")
-      expect{Mastermind::CodeGenerator.new.code_generator}.to raise_error(ArgumentError)
+      expect(@game_engine.play).to be nil
     end
   end
 

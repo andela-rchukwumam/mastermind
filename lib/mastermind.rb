@@ -26,7 +26,7 @@ module Mastermind
       user_input
     end
 
-    def user_input
+    def user_input(isTest = false)
       loop do
         @input = gets.chomp
         if @input[0].downcase == "q"
@@ -38,6 +38,7 @@ module Mastermind
           break
         else @input[0].downcase == "i"
           puts @message.instruction_msg
+          break if isTest
         end
       end
     end

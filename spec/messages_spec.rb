@@ -110,8 +110,8 @@ describe Mastermind::Message do
 
   describe "#data_msg" do
     it "should be a string and contain the word completed" do
-      expect(@message.data_msg("string", 1.0)).to include("completed")
-      expect(@message.data_msg("string", 1.0)).to be_a String
+      expect(@message.data_msg("string", 1.0, 1)).to include("completed")
+      expect(@message.data_msg("string", 1.0, 1)).to be_a String
     end
     it "should throw an error when called without arguments" do
       expect{@message.data_msg}.to raise_error(ArgumentError)
@@ -120,10 +120,10 @@ describe Mastermind::Message do
       expect{@message.data_msg("string")}.to raise_error(ArgumentError)
     end
     it "should throw an error when argument is the wrong type" do
-      expect{@message.data_msg(1.0, "string")}.to raise_error(TypeError)
+      expect{@message.data_msg(1.0, "string", 1.0)}.to raise_error(TypeError)
     end
       it "should throw an error when argument is the wrong type" do
-      expect{@message.data_msg("string", "string")}.to raise_error(TypeError)
+      expect{@message.data_msg("string", "string", "string")}.to raise_error(TypeError)
     end
   end
 

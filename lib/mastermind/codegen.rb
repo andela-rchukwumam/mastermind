@@ -23,7 +23,7 @@ module Mastermind
       @codecomp.guess_status(secret_code)
     end
 
-     def user_status(user_choice)
+    def user_status(user_choice)
       if user_choice == :advanced
         puts @message.advanced_msg
       elsif user_choice == :medium

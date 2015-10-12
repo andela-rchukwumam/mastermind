@@ -49,10 +49,10 @@ module Mastermind
       partial
    end
 
-    def comparison(computercode, user_entry, start_time)
+    def comparison(computercode, user_entry, start_time, guess_count)
       if computercode == user_entry
         puts @message.won_msg(start_time)
-        @gamedata.game_data(start_time)
+        @gamedata.game_data(start_time, guess_count)
       else
         exact_status = exact_match(computercode, user_entry)
         cc = exact_status[1]
@@ -65,7 +65,7 @@ module Mastermind
     def comp_comparison(user_entry, computercode, start_time, guess_count)
       if user_entry.length == computercode.length
           puts @message.guess_msg(guess_count)
-          comparison(computercode, user_entry, start_time)
+          comparison(computercode, user_entry, start_time, guess_count)
         elsif user_entry.length > computercode.length
           puts @message.long_entry
           puts @message.guess_msg(guess_count)

@@ -145,10 +145,10 @@ module Mastermind
       EOS
     end
 
-    def data_msg(name_input, start_time)
+    def data_msg(name_input, start_time, guess_count)
       <<-EOS
               *************************************
-              *#{name_input} completed the game in #{(Time.now - start_time).to_i} seconds*
+              *#{name_input} completed the game after #{guess_count + 1} rounds in #{(Time.now - start_time).to_i} seconds*
               ************************************* 
       EOS
     end

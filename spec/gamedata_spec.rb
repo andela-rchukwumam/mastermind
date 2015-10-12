@@ -20,6 +20,8 @@ describe Mastermind::GameData do
       allow(@message).to receive(:name_msg).and_return(nil)
       expect{@game_data.game_data}.to raise_error(ArgumentError)
     end
+
+    #another
   end
 end
   #######################################################

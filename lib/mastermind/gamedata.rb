@@ -3,7 +3,7 @@ module Mastermind
     def initialize
       @message = Message.new
     end
-    def game_data(start_time)
+    def game_data(start_time, guess_count)
       # saves the game info to a file
       #all the method does is to pick the game data and store it in a file
       puts @message.save_msg
@@ -12,8 +12,8 @@ module Mastermind
         puts @message.name_msg
         name_input = gets.chomp
         File.open("users.txt", "a+") do |file|
-          puts @message.data_msg(name_input, start_time)
-          file.puts "#{name_input} completed the game in #{(Time.now - start_time).to_i} seconds"
+          puts @message.data_msg(name_input, start_time, guess_count)
+          file.puts "#{name_input} completed the game after #{guess_count + 1} rounds in #{(Time.now - start_time).to_i} seconds"
         end
         record
       end  
@@ -22,9 +22,14 @@ module Mastermind
       puts @message.rank_msg
         @rank_input = gets.chomp
         if @rank_input[0].downcase == "y"
-          File.open("users.txt", "r+") do |file|
-            file.each_line {|line|  puts line}
+          top_ten = []
+          File.open("users.txt", "r") do | lines |
+            lines.each_line do |text|
+            top_ten << text
+            @leader = top_ten.sort_by { |line| line[/\d+ rounds/].to_i &&  line[/\d+ seconds/].to_i}
+            end
           end
+          @leader.each {|line|  puts line}
         end
     end
   end
