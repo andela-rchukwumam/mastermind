@@ -19,8 +19,8 @@ module Mastermind
       end
       user_status(user_choice)
 
-      secret_code = computer_code.join
-      @codecomp.guess_status(secret_code)
+      @secret_code = computer_code.join
+      @codecomp.guess_status(@secret_code)
     end
 
     def user_status(user_choice)

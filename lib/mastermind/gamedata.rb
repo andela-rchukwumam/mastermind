@@ -4,8 +4,6 @@ module Mastermind
       @message = Message.new
     end
     def game_data(start_time, guess_count)
-      # saves the game info to a file
-      #all the method does is to pick the game data and store it in a file
       puts @message.save_msg
       @input = gets.chomp
       if @input[0].downcase == "y"
@@ -29,7 +27,7 @@ module Mastermind
             @leader = top_ten.sort_by { |line| line[/\d+ rounds/].to_i &&  line[/\d+ seconds/].to_i}
             end
           end
-          @leader.each {|line|  puts line}
+          puts "#{@leader.first(10).join.to_s}" #.each {|line|  puts line.first(10)}
         end
     end
   end
