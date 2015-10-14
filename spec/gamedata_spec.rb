@@ -13,15 +13,30 @@ describe Mastermind::GameData do
   end
 
   describe"game_data" do
-    it "should save the game data to a file" do
-      allow(@game_data).to receive(:puts).and_return(nil)
-      allow(@message).to receive(:level_msg).and_return(nil)
-      allow(@game_data).to receive(:gets).and_return("y")
-      allow(@message).to receive(:name_msg).and_return(nil)
+    it "should raise error when called with wrong number of arguments" do
       expect{@game_data.game_data}.to raise_error(ArgumentError)
     end
 
-    #another
+    it "should be nil" do
+      allow(@game_data).to receive(:puts).and_return(nil)
+      allow(@message).to receive(:save_msg).and_return(nil)
+      allow(@game_data).to receive(:gets).and_return("y")
+      # allow(@message).to receive(:name_msg).and_return(nil)
+      expect(@game_data.game_data(11.0, 2)).to be nil
+    end
+
+    it "should open 'users.txt' and check it" do
+      allow_any_instance_of(Mastermind::Message).to receive(:save_msg).and_return(nil)
+      allow_any_instance_of(Mastermind::Message).to receive(:name_msg).and_return(nil)
+      allow_any_instance_of(Mastermind::Message).to receive(:data_msg).and_return(nil)
+      allow(@game_data).to receive(:input) { "y" }
+      allow(@game_data).to receive(:name_input) { "test_name" }
+      allow(@game_data).to receive(:record).and_return(nil)
+      @game_data.game_data(11.0, 2)
+      expect(File.exists?("users.txt")).to be true
+      expect(File.read("users.txt").include? "test_name").to be true
+    end
+
   end
 end
   #######################################################

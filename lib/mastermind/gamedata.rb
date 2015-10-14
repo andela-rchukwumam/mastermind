@@ -3,12 +3,21 @@ module Mastermind
     def initialize
       @message = Message.new
     end
+
+    def input
+      @input = gets.chomp
+    end
+
+    def name_input
+      @name_input = gets.chomp
+    end
+
     def game_data(start_time, guess_count)
       puts @message.save_msg
-      @input = gets.chomp
-      if @input[0].downcase == "y"
+      input
+      if input[0].downcase == "y"
         puts @message.name_msg
-        name_input = gets.chomp
+        name_input
         File.open("users.txt", "a+") do |file|
           puts @message.data_msg(name_input, start_time, guess_count)
           file.puts "#{name_input} completed the game after #{guess_count + 1} rounds in #{(Time.now - start_time).to_i} seconds"

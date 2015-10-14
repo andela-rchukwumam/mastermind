@@ -8,6 +8,4 @@ require_relative '../lib/mastermind/gamedata'
 require_relative '../lib/mastermind/codecomp'
 require_relative '../lib/mastermind/gameengine'
 
-
-
 require 'yaml'
