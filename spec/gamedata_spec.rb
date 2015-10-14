@@ -32,7 +32,8 @@ describe Mastermind::GameData do
       allow(@game_data).to receive(:input) { "y" }
       allow(@game_data).to receive(:name_input) { "test_name" }
       allow(@game_data).to receive(:record).and_return(nil)
-      @game_data.game_data(11.0, 2)
+      # @game_data.game_data(11.0, 2)
+      
       expect(File.exists?("users.txt")).to be true
       expect(File.read("users.txt").include? "test_name").to be true
     end
