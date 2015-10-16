@@ -1,5 +1,6 @@
 module Mastermind
   class GameData
+    attr_accessor :use
     def initialize
       @message = Message.new
     end
@@ -13,25 +14,33 @@ module Mastermind
           puts @message.data_msg(name_input, start_time, guess_count)
           file.puts "#{name_input} completed the game after #{guess_count + 1} rounds in #{(Time.now - start_time).to_i} seconds"
         end
-        record(filename)
+        ranker(filename)
       end  
     end
 
-    def record(filename = "users.txt")
+    def ranker(filename)
       puts @message.rank_msg
-        @rank_input = gets.chomp
-        if @rank_input[0].downcase == "y"
-          top_ten = []
-          File.open(filename, "r+") do | lines |
-            lines.each_line do |text|
-            top_ten << text
-            @leader = top_ten.sort_by { |line| line[/\d+ rounds/].to_i &&  line[/\d+ seconds/].to_i}
-            end
-          end
-          puts "#{@leader.first(10).join.to_s}" #.each {|line|  puts line.first(10)}
-        end
+      rank_input = gets.chomp
+      if rank_input[0].downcase == "y"
+        record(filename)
+      else
         puts @message.request_msg
-        GameEngine.new.user_input
+        @use ||= GameEngine.new
+        @use.user_input
+      end
+    end
+
+    def record(filename = "users.txt")
+      top_ten = []
+      File.open(filename, "r+") do | lines |
+        lines.each_line do |text|
+        top_ten << text
+        @leader = top_ten.sort_by { |line| line[/\d+ rounds/].to_i &&  line[/\d+ seconds/].to_i}
+        end
+        puts "#{@leader.first(10).join.to_s}" #.each {|line|  puts line.first(10)}
+      end
+      puts @message.request_msg
+      @use.user_input
     end
   end
 end 

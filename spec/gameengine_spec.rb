@@ -38,10 +38,8 @@ describe Mastermind::GameEngine do
     end
 
     it "should check for user choice and show instruction message " do
-      # allow(@game_engine).to receive(:user_input).and_return(nil)
       allow(@game_engine).to receive(:gets).and_return("i")
       allow(@game_engine).to receive(:puts).and_return(nil)
-      allow(@message).to receive(:instruction_msg).and_return(nil)
       expect(@game_engine.user_input(true)).to be nil
     end
   end

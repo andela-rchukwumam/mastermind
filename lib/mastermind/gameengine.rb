@@ -1,7 +1,7 @@
 module Mastermind
   class GameEngine 
     #this class handles all the main work in the game.
-    attr_accessor :message, :codegen
+    attr_accessor :message, :codegen, :user
     def initialize
       @message = Message.new
       @codegen = CodeGenerator.new
