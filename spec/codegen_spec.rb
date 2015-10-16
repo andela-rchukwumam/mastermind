@@ -16,6 +16,12 @@ describe Mastermind::CodeGenerator do
     it "should throw an error when called without argument" do
       expect{@code_generator.code_generator}.to raise_error(ArgumentError)
     end
+    it "should generate computer code" do
+      allow(@code_generator).to receive(:user_status).and_return("good")
+      allow(@code_generator).to receive(:level_specs).and_return([6,5])
+      allow(@code_generator.codecomp).to receive(:guess_status).and_return("generated")
+      expect(@code_generator.code_generator([6,5])).to eql("generated")
+    end
   end
 
   describe "#user_status" do
