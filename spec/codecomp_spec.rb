@@ -71,7 +71,7 @@ describe Mastermind::CodeComp do
 
     it "should be longer than user entry" do
       allow(@code_comp).to receive(:puts).and_return("longer")
-      expect(@code_comp.comp_comparison("rrrrrr","rrgb", Time.now, 3)).to eql("longer")
+      expect(@code_comp.comp_comparison("rrr","rrgb", Time.now, 3)).to eql("longer")
     end
   end
 end
