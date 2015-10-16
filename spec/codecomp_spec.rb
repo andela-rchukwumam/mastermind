@@ -4,6 +4,7 @@ require_relative 'spec_helper'
 describe Mastermind::CodeComp do
   before :each do
     @code_comp = Mastermind::CodeComp.new
+    @gamedata = Mastermind::GameData.new
   end
 
   describe "#new" do
@@ -14,14 +15,18 @@ describe Mastermind::CodeComp do
 
   describe "#guess_status" do
     it "should throw an error when called without argument" do
+      allow(@code_comp).to receive(:puts).and_return(nil)
       expect{@code_comp.guess_status}.to raise_error(ArgumentError)
     end
     it "should exit when user presses quit" do
       allow(@code_comp).to receive(:gets).and_return("q")
+      allow(@code_comp).to receive(:puts).and_return(nil)
       expect{@code_comp.guess_status("rrrr")}.to raise_error(SystemExit)
     end
     it "should compare the entries" do
-      allow(@code_comp).to receive
+      allow(@code_comp).to receive(:gets).and_return("rrrr")
+      allow(@code_comp).to receive(:comp_comparison).and_return(nil)
+      expect(@code_comp.guess_status("rrrr")).to be nil
     end
   end
 
@@ -37,10 +42,24 @@ describe Mastermind::CodeComp do
     end
   end
 
-  # describe "#comparison" do
-  #   it "should compare values and print the result" do
-  #     allow(@code_comp).to receive(:puts).and_return(nil)
-  #     allow(@gamedata).to receive(:gamedata).with
-  #   end
-  # end
+  describe "#comparison" do
+    it "should compare values and print won message" do
+      allow(@code_comp).to receive(:puts).and_return(nil)
+      allow(@code_comp).to receive(:gets).and_return(nil)
+      allow(@code_comp.gamedata).to receive(:game_data).and_return("equal")
+      expect(@code_comp.comparison("rrrr","rrrr", Time.now, 3)).to eql("equal")
+    end
+
+    it "should compare values and print error message" do
+      @code_comp.guess_count = 13
+      allow(@code_comp).to receive(:puts).and_return("not equal")
+      expect(@code_comp.comparison("rgrr","rrrr", Time.now, 3)).to eql("not equal")
+    end
+  end
+
+  describe "#comp_comparison" do
+    it "description" do
+      
+    end
+  end
 end

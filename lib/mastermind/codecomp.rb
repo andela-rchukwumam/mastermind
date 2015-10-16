@@ -1,25 +1,23 @@
 module Mastermind
   class CodeComp
+    attr_accessor :guess_count, :start_time, :gamedata
     def initialize
       @message = Message.new
       @gamedata = GameData.new
+      @guess_count = 0
     end
 
     def guess_status(computercode)
-      start_time = Time.now
+     @start_time = Time.now
       # puts computercode
-      guess_count = user_entry = 0
-      while guess_count < 12 && user_entry != computercode
+      user_entry = 0
+      while @guess_count < 12 && user_entry != computercode
         user_entry = gets.chomp.downcase
-      if user_entry == "q"
-        puts @message.quit_msg
-        exit
-      end
-        comp_comparison(user_entry, computercode, start_time, guess_count)
-        guess_count += 1
-        if guess_count >= 12
-          puts @message.error_msg
+        if user_entry == "q"
+          puts @message.quit_msg
+          exit
         end
+        comp_comparison(user_entry, computercode, @start_time, @guess_count)
       end 
     end
 
@@ -59,6 +57,10 @@ module Mastermind
         exact_status = exact_status[0]
         partial_status = partial_match(cc, user_entry)
         puts @message.match_msg(exact_status, partial_status)
+        @guess_count += 1
+        if @guess_count >= 12
+          puts @message.error_msg
+        end
       end
     end
 
@@ -69,9 +71,11 @@ module Mastermind
         elsif user_entry.length > computercode.length
           puts @message.long_entry
           puts @message.guess_msg(guess_count)
+           @guess_count += 1
         else
           puts @message.short_entry
           puts @message.guess_msg(guess_count)
+           @guess_count += 1
       end
     end
   end
