@@ -7,13 +7,13 @@ module Mastermind
 
     def guess_status(computercode)
       start_time = Time.now
-      puts computercode
+      # puts computercode
       guess_count = user_entry = 0
       while guess_count < 12 && user_entry != computercode
         user_entry = gets.chomp.downcase
       if user_entry == "q"
         puts @message.quit_msg
-        break
+        exit
       end
         comp_comparison(user_entry, computercode, start_time, guess_count)
         guess_count += 1
@@ -52,7 +52,7 @@ module Mastermind
     def comparison(computercode, user_entry, start_time, guess_count)
       if computercode == user_entry
         puts @message.won_msg(start_time)
-        @gamedata.game_data(start_time, guess_count)
+        @gamedata.game_data(start_time, guess_count,"users.txt")
       else
         exact_status = exact_match(computercode, user_entry)
         cc = exact_status[1]
