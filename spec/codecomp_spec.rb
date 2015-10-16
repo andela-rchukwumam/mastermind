@@ -38,7 +38,7 @@ describe Mastermind::CodeComp do
 
   describe "#partial_match" do
     it "should return the partial_match" do
-      expect(@code_comp.partial_match("-gby", "rrrr")).to eql(0)  
+      expect(@code_comp.partial_match("-gby", "rbrr")).to eql(1)  
     end
   end
 
@@ -58,8 +58,20 @@ describe Mastermind::CodeComp do
   end
 
   describe "#comp_comparison" do
-    it "description" do
-      
+    it "should be equal to user entry" do
+      allow(@code_comp).to receive(:puts).and_return("nil")
+      allow(@code_comp).to receive(:comparison).and_return("equal")
+      expect(@code_comp.comp_comparison("rrrr","rrgb", Time.now, 3)).to eql("equal")
+    end
+
+    it "should be shorter than user entry" do
+      allow(@code_comp).to receive(:puts).and_return("shorter")
+      expect(@code_comp.comp_comparison("rrrrrr","rrgb", Time.now, 3)).to eql("shorter")
+    end
+
+    it "should be longer than user entry" do
+      allow(@code_comp).to receive(:puts).and_return("longer")
+      expect(@code_comp.comp_comparison("rrrrrr","rrgb", Time.now, 3)).to eql("longer")
     end
   end
 end

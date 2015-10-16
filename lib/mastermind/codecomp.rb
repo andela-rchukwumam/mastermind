@@ -71,11 +71,11 @@ module Mastermind
         elsif user_entry.length > computercode.length
           puts @message.long_entry
           puts @message.guess_msg(guess_count)
-           @guess_count += 1
+           # @guess_count += 1
         else
           puts @message.short_entry
           puts @message.guess_msg(guess_count)
-           @guess_count += 1
+           # @guess_count += 1
       end
     end
   end
