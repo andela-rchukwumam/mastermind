@@ -44,9 +44,10 @@ describe Mastermind::GameData do
     end
 
     it "should read from file" do
+      @game_data.use = game_engine
       allow(@game_data).to receive(:puts).and_return("puts")
       allow(@game_data).to receive(:gets).and_return("i")
-      allow(@game_data.use).to receive(:user_input).and_return(nil)
+      allow(game_engine).to receive(:user_input).and_return(nil)
       expect(@game_data.record("./bin/testgameresults.txt")).to eql(nil)
     end
   end

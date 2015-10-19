@@ -40,6 +40,7 @@ module Mastermind
         puts "#{@leader.first(10).join.to_s}" #.each {|line|  puts line.first(10)}
       end
       puts @message.request_msg
+      @use ||= GameEngine.new
       @use.user_input
     end
   end

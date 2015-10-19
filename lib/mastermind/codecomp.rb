@@ -9,7 +9,7 @@ module Mastermind
 
     def guess_status(computercode)
      @start_time = Time.now
-      # puts computercode
+      puts computercode
       user_entry = 0
       while @guess_count < 12 && user_entry != computercode
         user_entry = gets.chomp.downcase
